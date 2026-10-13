@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMC Master Live Chart & Order Flow Tool</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #131722;
+            color: #d1d4dc;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        header {
+            background-color: #1e222d;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #2a2e39;
+        }
+        h1 {
+            font-size: 18px;
+            margin: 0;
+            color: #2962ff;
+        }
+        .indicator-btn {
+            background-color: #2962ff;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .indicator-btn:hover {
+            background-color: #1e54e4;
+        }
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        #tradingview-widget {
+            flex: 3;
+            height: 100%;
+        }
+        .sidebar {
+            flex: 1;
+            background-color: #1e222d;
+            border-left: 1px solid #2a2e39;
+            padding: 15px;
+            overflow-y: auto;
+            max-width: 320px;
+        }
+        .card {
+            background: #2a2e39;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .card h3 {
+            margin-top: 0;
+            font-size: 14px;
+            color: #ffb74d;
+        }
+        .badge {
+            background: #00c853;
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .rule-item {
+            font-size: 13px;
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>📈 SMC Order Flow & Live Chart Tool</h1>
+    <button class="indicator-btn" onclick="toggleIndicatorModal()">⚙️ Custom Indicator Script</button>
+</header>
+
+<div class="main-container">
+    <!-- TradingView Live Chart Widget -->
+    <div id="tradingview-widget"></div>
+
+    <!-- Live SMC Order Flow Rules Panel -->
+    <div class="sidebar">
+        <div class="card">
+            <h3>🎯 2026 Master Setup Rules</h3>
+            <div class="rule-item"><span class="badge">1</span> Weekly/D1 Red BOS Swept</div>
+            <div class="rule-item"><span class="badge">2</span> 80% OTE Discount Zone Retest</div>
+            <div class="rule-item"><span class="badge">3</span> Red CHoCH Liquidity Cleaned</div>
+            <div class="rule-item"><span class="badge">4</span> Strong Volume Double Close</div>
+        </div>
+
+        <div class="card">
+            <h3>🛡️ Risk Management</h3>
+            <div class="rule-item"><b>SL:</b> First Low Candle Wick</div>
+            <div class="rule-item"><b>TP:</b> Target Last Green BOS / FVG</div>
+            <div class="rule-item"><b>Target R:R:</b> Minimum 1:3+</div>
+        </div>
+    </div>
+</div>
+
+<!-- TradingView Widget Integration Script -->
+<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+<script type="text/javascript">
+  new TradingView.widget({
+    "autosize": true,
+    "symbol": "BINANCE:BTCUSDT",
+    "interval": "D",
+    "timezone": "Etc/UTC",
+    "theme": "dark",
+    "style": "1",
+    "locale": "en",
+    "toolbar_bg": "#f1f3f6",
+    "enable_publishing": false,
+    "allow_symbol_change": true,
+    "container_id": "tradingview-widget"
+  });
+
+  function toggleIndicatorModal() {
+      alert("TradingView Indicator Code:\n\n1. Open TradingView.com\n2. Open 'Pine Editor' at the bottom\n3. Paste your Pine Script Code v5\n4. Click 'Add to Chart'");
+  }
+</script>
+
+</body>
+</html>
